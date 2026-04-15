@@ -1,0 +1,22 @@
+---
+import { skills } from "../data/skills";
+
+// Duplicate for seamless loop
+const doubled = [...skills, ...skills];
+---
+
+<section
+  id="skills"
+  class="py-10 border-y border-[#2a2a2a] overflow-hidden bg-[#0e0e0e] relative"
+>
+  <div class="flex gap-12 animate-marquee whitespace-nowrap w-max">
+    {
+      doubled.map((skill) => (
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-[#8a8a8a] hover:text-[#e8523a] transition-colors duration-200 cursor-default select-none">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e8523a]/60" />
+          {skill.name}
+        </span>
+      ))
+    }
+  </div>
+</section>
