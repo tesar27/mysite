@@ -1,0 +1,72 @@
+---
+import { projects } from "../data/projects";
+import ProjectCard from "./ProjectCard.astro";
+---
+
+<section id="projects" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section header -->
+    <div class="flex items-center gap-3 mb-4">
+      <span class="w-10 h-px bg-[#e8523a]"></span>
+      <span
+        class="text-[#e8523a] text-sm font-semibold uppercase tracking-widest"
+        >Work</span
+      >
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
+    >
+      <h2 class="text-4xl md:text-5xl font-extrabold">
+        Selected <br class="hidden md:block" /><span class="text-[#e8523a]"
+          >Projects</span
+        >
+      </h2>
+      <p class="text-[#8a8a8a] max-w-sm text-sm leading-relaxed">
+        A handful of things I've built — from side projects born at 1am to
+        production products used by thousands of people.
+      </p>
+    </div>
+
+    <!-- Featured row (first 2) -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+      {
+        projects
+          .slice(0, 2)
+          .map((project, i) => <ProjectCard project={project} index={i} />)
+      }
+    </div>
+
+    <!-- Remaining grid (3+) -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {
+        projects
+          .slice(2)
+          .map((project, i) => <ProjectCard project={project} index={i + 2} />)
+      }
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="mt-14 text-center">
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[#8a8a8a] hover:text-[#e8523a] transition-colors duration-200 group"
+      >
+        View all on GitHub
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
