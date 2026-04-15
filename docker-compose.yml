@@ -1,0 +1,7 @@
+services:
+  mysite:
+    build: .
+    container_name: mysite
+    ports:
+      - "3000:80"
+    restart: unless-stopped
