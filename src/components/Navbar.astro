@@ -1,0 +1,112 @@
+---
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#home" class="text-xl font-bold tracking-tight group">
+      <span
+        class="text-[#f0f0f0] group-hover:text-[#e8523a] transition-colors duration-200"
+        >Yerlan</span
+      >
+      <span class="text-[#e8523a]">.</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-[#8a8a8a] hover:text-[#f0f0f0] transition-colors duration-200 relative group"
+          >
+            {link.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-px bg-[#e8523a] group-hover:w-full transition-all duration-300" />
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- CTA -->
+    <a
+      href="#contact"
+      class="hidden md:inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-full border border-[#e8523a] text-[#e8523a] hover:bg-[#e8523a] hover:text-white transition-all duration-200"
+    >
+      Hire me
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2 group"
+      aria-label="Toggle menu"
+    >
+      <span
+        class="w-6 h-px bg-[#f0f0f0] transition-all duration-300 group-[.open]:rotate-45 group-[.open]:translate-y-2"
+      ></span>
+      <span
+        class="w-6 h-px bg-[#f0f0f0] transition-all duration-300 group-[.open]:opacity-0"
+      ></span>
+      <span
+        class="w-6 h-px bg-[#f0f0f0] transition-all duration-300 group-[.open]:-rotate-45 group-[.open]:-translate-y-2"
+      ></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden flex-col gap-4 px-6 pb-6 bg-[#0e0e0e] border-t border-[#2a2a2a]"
+  >
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-[#8a8a8a] hover:text-[#f0f0f0] transition-colors duration-200 text-base py-1"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const navbar = document.getElementById("navbar");
+
+  btn?.addEventListener("click", () => {
+    btn.classList.toggle("open");
+    menu?.classList.toggle("hidden");
+    menu?.classList.toggle("flex");
+  });
+
+  // Scroll background
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) {
+      navbar?.classList.add(
+        "bg-[#0e0e0e]/95",
+        "backdrop-blur-sm",
+        "border-b",
+        "border-[#2a2a2a]",
+      );
+    } else {
+      navbar?.classList.remove(
+        "bg-[#0e0e0e]/95",
+        "backdrop-blur-sm",
+        "border-b",
+        "border-[#2a2a2a]",
+      );
+    }
+  });
+</script>
