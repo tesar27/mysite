@@ -1,0 +1,96 @@
+---
+import { services } from '../data/skills';
+
+const stats = [
+  { value: "120+", label: "Completed Projects" },
+  { value: "95%",  label: "Client Satisfaction" },
+  { value: "10+",  label: "Years of Experience" },
+];
+---
+
+<section id="about" class="py-24 relative">
+  <!-- Subtle top divider -->
+  <div class="max-w-6xl mx-auto px-6">
+    <!-- Section label -->
+    <div class="flex items-center gap-3 mb-16">
+      <span class="w-10 h-px bg-[#e8523a]" />
+      <span class="text-[#e8523a] text-sm font-semibold uppercase tracking-widest">About</span>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: services -->
+      <div>
+        <h2 class="text-3xl font-bold mb-10 text-[#f0f0f0]">What I do</h2>
+        <ul class="space-y-0">
+          {services.map((svc, i) => (
+            <li class="flex items-start gap-5 py-6 border-b border-[#2a2a2a] group cursor-default">
+              <!-- Numbered accent -->
+              <span class="shrink-0 text-xs font-bold text-[#e8523a] mt-1 w-5">0{i + 1}</span>
+              <!-- Icon -->
+              <div
+                class="shrink-0 w-10 h-10 rounded-xl bg-[#1e1e1e] border border-[#2a2a2a] flex items-center justify-center text-[#8a8a8a] group-hover:border-[#e8523a] group-hover:text-[#e8523a] transition-all duration-300"
+                set:html={svc.icon}
+              />
+              <!-- Text -->
+              <div>
+                <p class="font-semibold text-[#f0f0f0] group-hover:text-[#e8523a] transition-colors duration-200">{svc.title}</p>
+                <p class="text-sm text-[#8a8a8a] mt-1">{svc.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Right: bio + stats -->
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-4xl font-extrabold mb-6">
+            About <span class="text-[#e8523a]">me</span>
+          </h2>
+          <div class="space-y-4 text-[#8a8a8a] leading-relaxed">
+            <p>
+              My journey into software started with a camera — photography taught me composition,
+              balance, and the beauty of bringing something from nothing into existence.
+            </p>
+            <p>
+              Since then I've channelled that same passion into code. I specialise in building
+              performant full-stack products: clean UIs that feel delightful, and reliable
+              back-end systems that scale. I care deeply about developer experience,
+              accessibility, and shipping work that lasts.
+            </p>
+            <p>
+              When I'm not pushing commits I'm exploring open-source, mentoring junior devs,
+              or running trails that pretend to be mountains.
+            </p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 pt-4">
+          {stats.map((stat) => (
+            <div class="bg-[#161616] border border-[#2a2a2a] rounded-2xl p-5 text-center group hover:border-[#e8523a]/50 transition-all duration-300">
+              <p class="text-3xl font-extrabold text-[#e8523a] group-hover:scale-110 transition-transform duration-300 inline-block">
+                {stat.value}
+              </p>
+              <p class="text-xs text-[#8a8a8a] mt-1 leading-snug">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Tech stack chips -->
+        <div>
+          <p class="text-xs uppercase tracking-widest text-[#8a8a8a] mb-3">Tech stack</p>
+          <div class="flex flex-wrap gap-2">
+            {["TypeScript","React","Next.js","Astro","Node.js","PostgreSQL","TailwindCSS","Docker"].map((t) => (
+              <span class="text-xs px-3 py-1.5 rounded-full bg-[#1e1e1e] border border-[#2a2a2a] text-[#8a8a8a] hover:border-[#e8523a] hover:text-[#e8523a] transition-all duration-200 cursor-default">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
