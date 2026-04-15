@@ -1,0 +1,39 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[#2a2a2a] py-10">
+  <div
+    class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+  >
+    <p class="text-sm text-[#8a8a8a]">
+      © {year}
+      <span class="text-[#f0f0f0] font-semibold">Yerlan</span>. All rights
+      reserved.
+    </p>
+
+    <div class="flex items-center gap-6">
+      {
+        [
+          { label: "Home", href: "#home" },
+          { label: "About", href: "#about" },
+          { label: "Projects", href: "#projects" },
+          { label: "Contact", href: "#contact" },
+        ].map((l) => (
+          <a
+            href={l.href}
+            class="text-xs text-[#8a8a8a] hover:text-[#e8523a] transition-colors duration-200"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="text-xs text-[#8a8a8a]">
+      Built with <span class="text-[#e8523a]">Astro</span> &amp; <span
+        class="text-[#e8523a]">Tailwind</span
+      >
+    </p>
+  </div>
+</footer>
