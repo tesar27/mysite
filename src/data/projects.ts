@@ -10,13 +10,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
+    title: "Storage Application",
     description:
-      "A full-stack online store with real-time inventory, Stripe payments, and an admin dashboard built with Next.js and PostgreSQL.",
-    tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-    link: "#",
-    repo: "#",
-    image: "ecommerce",
+      "A full-stack storage app built with Nextjs and Appwrite",
+    tags: ["Next.js", "TypeScript", "Appwrite", "EmailOTP"],
+    link: "https://storage.yerbolat.com",
+    repo: "https://github.com/tesar27/storage-app",
+    image: "storageapp",
     featured: true,
   },
   {
