@@ -22,10 +22,10 @@ export const projects: Project[] = [
   {
     title: "AI Chat Application",
     description:
-      "A real-time chat app powered by OpenAI GPT-4. Supports multi-room conversations, markdown rendering, and persistent history.",
+      "AI Chat App for analyzing two videos of a child with cerebral palsy to track motor function improvements over time, built with Nextjs, FastAPI, still in progress...",
     tags: ["React", "Node.js", "OpenAI", "Socket.io"],
-    link: "#",
-    repo: "#",
+    link: "https://rahabframe.vercel.app/",
+    repo: "https://github.com/tesar27/rahabframe",
     image: "aichat",
     featured: true,
   },
