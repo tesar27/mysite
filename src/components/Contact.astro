@@ -137,4 +137,43 @@
       </form>
     </div>
   </div>
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact form");
+    if (!form) throw new Error("Contact form not found");
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const status = form.querySelector<HTMLParagraphElement>("p.text-xs")!;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      const data = Object.fromEntries(new FormData(form));
+
+      try {
+        const res = await fetch(
+          "https://69e9626100071ecbd1d8.fra.appwrite.run/",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          },
+        );
+        const json = await res.json();
+        if (json.ok) {
+          status.textContent = "✓ Message sent! I'll reply within 24 hours.";
+          status.classList.add("text-green-400");
+          form.reset();
+        } else {
+          throw new Error(json.message);
+        }
+      } catch (err) {
+        status.textContent = "✗ Failed to send. Please email me directly.";
+        status.classList.add("text-red-400");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send message →";
+      }
+    });
+  </script>
 </section>
