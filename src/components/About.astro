@@ -40,6 +40,20 @@ const stats = [
             </li>
           ))}
         </ul>
+        <!-- Certificate thumbnail (place under the services list) -->
+        <button id="certThumb" aria-haspopup="dialog" class="mt-6 inline-block rounded-lg overflow-hidden border border-[#2a2a2a] hover:scale-[1.1] transition-transform">
+          <img src="/public/neuefische.jpg" alt="Certificate" class="w-84 h-60 md:w-120 md:h-88 object-cover block" />
+        </button>
+       
+        <!-- Modal (place near end of the component) -->
+        <div id="certModal" class="fixed inset-0 z-50 hidden flex items-center justify-center" aria-hidden="true" role="dialog" aria-modal="true">
+          <div id="certOverlay" class="absolute inset-0 bg-black/60"></div>
+          <div class="relative max-w-4xl mx-4 sm:mx-6 transform transition-transform scale-105 opacity-0 duration-200">
+            <button id="certClose" class="absolute top-3 right-3 z-10 text-white bg-black/50 rounded-full p-2">✕</button>
+            <img src="/public/neuefische.jpg" alt="Certificate full view" class="max-h-[85vh] w-auto block rounded-lg shadow-2xl" />
+          </div>
+        </div>
+
       </div>
 
       <!-- Right: bio + stats -->
@@ -82,7 +96,7 @@ const stats = [
         <div>
           <p class="text-xs uppercase tracking-widest text-[#8a8a8a] mb-3">Tech stack</p>
           <div class="flex flex-wrap gap-2">
-            {["TypeScript","React","Next.js","Astro","Node.js","PostgreSQL","TailwindCSS","Docker"].map((t) => (
+            {["TypeScript","React","Next.js","Astro","Node.js","PostgreSQL","TailwindCSS","Docker", "FastAPI", "Python"].map((t) => (
               <span class="text-xs px-3 py-1.5 rounded-full bg-[#1e1e1e] border border-[#2a2a2a] text-[#8a8a8a] hover:border-[#e8523a] hover:text-[#e8523a] transition-all duration-200 cursor-default">
                 {t}
               </span>
@@ -94,3 +108,33 @@ const stats = [
     </div>
   </div>
 </section>
+<script>
+  const thumb = document.getElementById('certThumb');
+  const modal = document.getElementById('certModal');
+  const overlay = document.getElementById('certOverlay');
+  const closeBtn = document.getElementById('certClose');
+  const modalBox = modal?.querySelector('div.relative');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    // animate in
+    requestAnimationFrame(() => {
+      modalBox.style.transform = 'scale(1)';
+      modalBox.style.opacity = '1';
+    });
+    modal?.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modalBox.style.transform = 'scale(.95)';
+    modalBox.style.opacity = '0';
+    modal?.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    setTimeout(() => modal?.classList.add('hidden'), 200);
+  }
+
+  thumb?.addEventListener('click', openModal);
+  overlay?.addEventListener('click', closeModal);
+  closeBtn?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
